@@ -9,7 +9,7 @@ app.use(express.json());
 
 const pool = new Pool({
   user: 'admin',
-  host: 'dpg-d038d1ruibrs738578dg-a',
+  host: 'dpg-d038d1ruibrs738578dg-a.ohio-postgres.render.com',
   database: 'ecommercebackendbd',
   password: 'gVOTfd6qSboZ5PrrkqxNQPSF9hdaAKY0',
   port: 5432,
@@ -26,6 +26,9 @@ app.get('/test-db', async (req, res) => {
     res.status(500).json({ status: '❌ Error al conectar', error: err.message });
   }
 });
+
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
 
 // server up 
 const PORT = process.env.PORT || 3000;
